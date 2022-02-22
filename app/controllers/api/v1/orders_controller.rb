@@ -1,6 +1,6 @@
 module Api
   module V1
-    class OrderController < ApplicationController
+    class OrdersController < ApplicationController
       def create
         posted_line_foods = LineFood.where(id: params[:line_food_ids])
         order = Order.new(

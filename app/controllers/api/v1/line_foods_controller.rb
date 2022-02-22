@@ -2,7 +2,6 @@ module Api
   module V1
     class LineFoodsController < ApplicationController
       before_action :set_food, only: %i[create replace]
-
       def index
         line_foods = LineFood.active
         if line_foods.exists?
@@ -38,10 +37,10 @@ module Api
 
       def replace
         LineFood.active.other_restaurant(@ordered_food.restaurant.id).each do |line_food|
-          line_food.update(:actice, false)
+          line_food.update(active: false)
         end
 
-        set_line_food(@orderd_food)
+        set_line_food(@ordered_food)
 
         if @line_food.save
           render json: {
